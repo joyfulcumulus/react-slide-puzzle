@@ -1,21 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Grid.module.css';
 import Tile from './Tile';
 
 function Grid() {
   const GRID_SIZE = 4
+  // generate initial shuffled numbers to set initial state
+  const shuffledNumbers = Array.from({ length: GRID_SIZE ** 2 }, (_, index) => index + 1).sort(() => Math.random() - 0.5);
   const [tiles, setTiles] = useState(shuffledNumbers);
-  const [emptyTileIndex, setEmptyTileIndex] = useState(tiles.findIndex(element => element === 16));
+  const [emptyTileIndex, setEmptyTileIndex] = useState(shuffledNumbers.findIndex(element => element === 16));
 
-  function shuffledNumbers() {
-    return Array.from({ length: GRID_SIZE ** 2 }, (_, index) => index + 1).sort(() => Math.random() - 0.5);
-  }
+  // update emptyTileIndex everytime when tiles updates
+  useEffect(() => {
+    setEmptyTileIndex(tiles.findIndex(element => element === 16));
+  }, [tiles]);
 
   function canMove(target) {
+    // get row, col coordinates of the 2 tiles
     const emptyTilePosition = {col: emptyTileIndex % GRID_SIZE, row: Math.floor(emptyTileIndex / GRID_SIZE)}
-    const clickedTileIndex = tiles.findIndex(element => element == target.innerText)
+    const clickedTileIndex = tiles.findIndex(element => element === parseInt(target.innerText))
     const clickedTilePosition = {col: clickedTileIndex % GRID_SIZE, row: Math.floor(clickedTileIndex / GRID_SIZE)}
 
+    // make comparison based on row, col coordinates (using index purely has bugs)
     const colDiff = Math.abs(emptyTilePosition.col - clickedTilePosition.col);
     const rowDiff = Math.abs(emptyTilePosition.row - clickedTilePosition.row);
     if ((rowDiff === 1 && colDiff === 0) || (rowDiff === 0 && colDiff === 1)) {
@@ -25,11 +30,20 @@ function Grid() {
   }
 
   function moveTile(target) {
-    console.log("we're in move tile method");
+    const clickedTileValue = parseInt(target.innerText)
+    const clickedTileIndex = tiles.findIndex(element => element === clickedTileValue)
+
+    // create a new tiles array, update that array and update the tiles state
+    const newTiles = [...tiles];
+    newTiles[clickedTileIndex] = 16;
+    newTiles[emptyTileIndex] = clickedTileValue;
+    setTiles(newTiles);
   }
 
   function checkIfPlayerWins() {
-    // move function to grid?
+    if(JSON.stringify(tiles) === '[1,2,3,4,5,6,7,8,9,10,11,12,13,14,16,15]') {
+      console.log("You win");
+    }
   }
 
   function handleClick({target}) {
