@@ -5,13 +5,21 @@ import Tile from './Tile';
 function Grid() {
   const GRID_SIZE = 4
   // generate initial shuffled numbers to set initial state
-  const shuffledNumbers = Array.from({ length: GRID_SIZE ** 2 }, (_, index) => index + 1).sort(() => Math.random() - 0.5);
+  // const shuffledNumbers = Array.from({ length: GRID_SIZE ** 2 }, (_, index) => index + 1).sort(() => Math.random() - 0.5);
+  const shuffledNumbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,16,15]
   const [tiles, setTiles] = useState(shuffledNumbers);
   const [emptyTileIndex, setEmptyTileIndex] = useState(shuffledNumbers.findIndex(element => element === 16));
 
   // update emptyTileIndex everytime when tiles updates
   useEffect(() => {
     setEmptyTileIndex(tiles.findIndex(element => element === 16));
+  }, [tiles]);
+
+  // check if player has won everytime when tiles updates
+  useEffect(() => {
+    if(JSON.stringify(tiles) === '[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]') {
+      console.log(JSON.stringify(tiles), "You win");
+    }
   }, [tiles]);
 
   function canMove(target) {
@@ -40,16 +48,9 @@ function Grid() {
     setTiles(newTiles);
   }
 
-  function checkIfPlayerWins() {
-    if(JSON.stringify(tiles) === '[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]') {
-      console.log("You win");
-    }
-  }
-
   function handleClick({target}) {
     if (canMove(target)) {
       moveTile(target);
-      checkIfPlayerWins();
     }
   }
 
