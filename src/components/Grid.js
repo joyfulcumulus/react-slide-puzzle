@@ -4,15 +4,15 @@ import Tile from './Tile';
 
 function Grid() {
   const GRID_SIZE = 4
-  const tiles = []
-
-  for (let i = 0; i < GRID_SIZE ** 2; i++) {
-    tiles.push(<Tile />)
-  }
+  const shuffledNumbers = Array.from({ length: GRID_SIZE ** 2 }, (_, index) => index + 1).sort(() => Math.random() - 0.5);
 
   return(
     <div className={styles.grid}>
-      {tiles}
+      {
+        shuffledNumbers.map((number, index) => {
+          return <Tile key={index} number={number} />
+        })
+      }
     </div>
   )
 }

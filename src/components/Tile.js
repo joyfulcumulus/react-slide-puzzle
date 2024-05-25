@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Tile.module.css';
 
-function Tile() {
+function Tile({number}) {
   return(
     <div className={styles.tile}>
-      Tile with image / value here
+      {number}
     </div>
   )
 }
