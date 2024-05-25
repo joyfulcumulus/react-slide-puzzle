@@ -24,7 +24,7 @@ function Tile({number}) {
 
   return(
     <div className={number === 16 ? `${styles.tile} ${styles.disabled}`: styles.tile} onClick={handleClick}>
-      {number}
+      {number === 16 ? '' : number}
     </div>
   )
 }
