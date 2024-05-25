@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Grid.module.css';
 import Tile from './Tile';
 
 function Grid() {
   const GRID_SIZE = 4
-  const shuffledNumbers = Array.from({ length: GRID_SIZE ** 2 }, (_, index) => index + 1).sort(() => Math.random() - 0.5);
+  const [tiles, setTiles] = useState(shuffledNumbers);
+  const [emptyTileIndex, setEmptyTileIndex] = useState(tiles.findIndex(element => element === 16));
+
+  function shuffledNumbers() {
+    return Array.from({ length: GRID_SIZE ** 2 }, (_, index) => index + 1).sort(() => Math.random() - 0.5);
+  }
 
   function canMove(target) {
-    const emptyTileIndex = shuffledNumbers.findIndex(element => element === 16)
     const emptyTilePosition = {col: emptyTileIndex % GRID_SIZE, row: Math.floor(emptyTileIndex / GRID_SIZE)}
-    const clickedTileIndex = shuffledNumbers.findIndex(element => element == target.innerText)
+    const clickedTileIndex = tiles.findIndex(element => element == target.innerText)
     const clickedTilePosition = {col: clickedTileIndex % GRID_SIZE, row: Math.floor(clickedTileIndex / GRID_SIZE)}
 
     const colDiff = Math.abs(emptyTilePosition.col - clickedTilePosition.col);
@@ -38,7 +42,7 @@ function Grid() {
   return(
     <div className={styles.grid}>
       {
-        shuffledNumbers.map((number, index) => {
+        tiles.map((number, index) => {
           return <Tile key={index} number={number} handleClick={handleClick} />
         })
       }
