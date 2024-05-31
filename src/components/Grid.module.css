@@ -1,9 +1,10 @@
 .grid {
   display: grid;
-  grid-template-rows: repeat(4, 20vmin);
-  grid-template-columns: repeat(4, 20vmin);
+  grid-template-rows: repeat(4, 18vmin);
+  grid-template-columns: repeat(4, 18vmin);
   background: #CCC;
   border-radius: 1vmin;
   padding: 2vmin;
   position: relative;
+  margin-bottom: 1rem;
 }
