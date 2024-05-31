@@ -5,8 +5,8 @@
   align-items: center;
   height: 100vh;
   margin: 0;
-  overscroll-behavior: none;
-  overflow: hidden;
+  /* overscroll-behavior: none;
+  overflow: hidden; */
 }
 
 .content {
