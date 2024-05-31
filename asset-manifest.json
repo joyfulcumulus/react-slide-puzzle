@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/react-slide-puzzle/static/css/main.fedb99a9.css",
+    "main.css": "/react-slide-puzzle/static/css/main.b2a4a7e4.css",
     "main.js": "/react-slide-puzzle/static/js/main.6de13639.js",
     "static/js/453.63e377a6.chunk.js": "/react-slide-puzzle/static/js/453.63e377a6.chunk.js",
     "index.html": "/react-slide-puzzle/index.html",
-    "main.fedb99a9.css.map": "/react-slide-puzzle/static/css/main.fedb99a9.css.map",
+    "main.b2a4a7e4.css.map": "/react-slide-puzzle/static/css/main.b2a4a7e4.css.map",
     "main.6de13639.js.map": "/react-slide-puzzle/static/js/main.6de13639.js.map",
     "453.63e377a6.chunk.js.map": "/react-slide-puzzle/static/js/453.63e377a6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fedb99a9.css",
+    "static/css/main.b2a4a7e4.css",
     "static/js/main.6de13639.js"
   ]
 }
