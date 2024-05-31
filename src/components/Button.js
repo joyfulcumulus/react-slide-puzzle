@@ -3,7 +3,7 @@ import styles from './Button.module.css';
 
 function Button({text='default text', handleClick}) {
   return(
-    <button className={styles.button} onClick={handleClick}>
+    <button className={styles.button} onClick={() => handleClick(0)}>
       {text}
     </button>
   )
