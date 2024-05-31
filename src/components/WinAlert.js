@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './WinAlert.module.css';
 import Button from './Button';
 
-function WinAlert({handleClick}) {
+function WinAlert({progress, setProgress}) {
   return(
-    <div className={styles.container}>
+    <div className={progress === 2 ? `${styles.container} ${styles.active}` : styles.container}>
       <div className={styles.texts}>
         <p>You Win!</p>
-        <Button text="Play Again" handleClick={() => handleClick(0)} />
+        <Button text="Play Again" handleClick={setProgress} />
       </div>
     </div>
   )

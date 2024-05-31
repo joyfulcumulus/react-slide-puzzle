@@ -15,7 +15,7 @@ function App() {
         <Button text="Reset Game" handleClick={setProgress} />
       </div>
     </div>
-    <WinAlert handleClick={setProgress} />
+    <WinAlert progress={progress} setProgress={setProgress} />
     </>
   );
 }
