@@ -8,17 +8,16 @@ function Grid({progress, setProgress}) {
   // const shuffledNumbers = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,16,15]
   const shuffledNumbers = Array.from({ length: GRID_SIZE ** 2 }, (_, index) => index + 1).sort(() => Math.random() - 0.5);
   const [tiles, setTiles] = useState(shuffledNumbers);
-  const [emptyTileIndex, setEmptyTileIndex] = useState(shuffledNumbers.findIndex(element => element === 16));
+  const emptyTileIndex = tiles.findIndex(element => element === 16);
 
-  // update emptyTileIndex everytime when tiles updates and set progress to 1 (in progress)
-  // check if player has won everytime when tiles updates, if yes display popup and set progress to 2
+  // after tiles update, check winning condition, and update progress accordingly (1: in progress, 2: win)
   useEffect(() => {
-    setEmptyTileIndex(tiles.findIndex(element => element === 16));
-    setProgress(1);
     if(JSON.stringify(tiles) === '[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]') {
       setProgress(2);
+    } else {
+      setProgress(1);
     }
-  }, [tiles, setProgress]);
+  })
 
   // reset gameboard whenever progress is changed to 0
   useEffect(() => {
