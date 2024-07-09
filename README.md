@@ -19,12 +19,14 @@ Hosting: Github Pages
 * Button: to reset gameplay when the user wants to restart halfway / or wins
 
 ### Component Hierarchy
+```
 App
 |-- Grid
     |-- Tile
 |-- Button
 |-- WinAlert
     |-- Button
+```
 
 ![diagram of react components](/public/slide-puzzle-components.png)
 
@@ -35,11 +37,11 @@ App
 Tile component, Button component, WinAlert component do not own any state. They have event handlers attached, which changes the `progress` and `tiles` state based on user interaction.
 
 ## Game Mechanics
-Objective: Order the tiles from 1 to 15, with the empty space occupying the last position
-Actions: Player can click on the tiles to swap their positions
-Rules: Only tiles that are adjacent to the empty space can be swapped
-State: The order of the tiles determines whether the player has won the game or not
-Randomness: The game starts with the tiles randomly shuffled on the grid
+* Objective: Order the tiles from 1 to 15, with the empty space occupying the last position
+* Actions: Player can click on the tiles to swap their positions
+* Rules: Only tiles that are adjacent to the empty space can be swapped
+* State: The order of the tiles determines whether the player has won the game or not
+* Randomness: The game starts with the tiles randomly shuffled on the grid
 
 User events trigger tile validation and Movement logic
 * Check if Tile can move
